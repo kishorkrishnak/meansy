@@ -20,8 +20,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       console.log(selectedWordData[0])
       selectedWordData[0].meanings.forEach((meaning) => {
         const title = document.createElement("dt")
+        title.classList.add("meaning-title")
         title.textContent = meaning.partOfSpeech
         const data = document.createElement("dd")
+      data.classList.add("meaning-data")
 
         data.textContent = meaning.definitions[0].definition
 
@@ -42,5 +44,8 @@ const fetchWordMeaning = async (result) => {
   message.textContent = "Loading..."
   const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${result}`)
   const data = await response.json()
+  message.textContent = ""
+
   return data
+
 }
