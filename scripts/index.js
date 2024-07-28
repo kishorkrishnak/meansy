@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   try {
     [{ result }] = await chrome.scripting.executeScript({
       target: { tabId: tab.id },
-      func: () => getSelection().toString(),
+      func: () => getSelection().toString().split(" ")[0],
     });
   } catch (e) {
     return;
@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     word.textContent = result
     const selectedWordData = await fetchWordMeaning(result)
     if (selectedWordData && selectedWordData.length > 0 && selectedWordData?.[0].meanings && selectedWordData?.[0].meanings.length > 0) {
-      console.log(selectedWordData[0])
       selectedWordData[0].meanings.forEach((meaning) => {
         const title = document.createElement("dt")
         title.classList.add("meaning-title")
