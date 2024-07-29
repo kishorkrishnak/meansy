@@ -1,11 +1,19 @@
 {
-    "manifest_version": 3,
-    "name": "Meansy - Find Meaning Easily",
-    "description": "Easily find meaning of words in one click!",
-    "version": "1.0",
-    "action": {
-      "default_popup": "popup/index.html",
-      "default_icon": "images/logo.png"
-    },
-    "permissions": ["scripting", "activeTab"]
+  "manifest_version": 3,
+  "name": "Meansy - Find Meaning Easily",
+  "description": "Easily find meaning of words in one click!",
+  "version": "1.0",
+  "action": {
+    "default_popup": "popup/index.html",
+    "default_icon": "images/logo.png"
+  },
+  "permissions": ["scripting", "activeTab"],
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+Shift+D",
+        "mac": "MacCtrl+Command+D"
+      }
+    }
   }
+}

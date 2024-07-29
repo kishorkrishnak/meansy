@@ -8,8 +8,45 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1 class="word"></h1>
-    <p class="message"></p>
-    <dl class="meanings"></dl>
+    <div class="meansy-wrapper">
+      <div class="navbar">
+        <div class="nav-item active" data-tab="meaning">
+          <img src="../images/dict.png" height="20" alt="dictionary" />
+        </div>
+        <div class="nav-item" data-tab="wikipedia">
+          <img src="../images/wiki.png" height="20" alt="wikipedia" />
+        </div>
+      </div>
+
+      <div class="meansy-body">
+        <p class="message"></p>
+
+        <div id="meaning" class="tab-content">
+          <div class="word-wrapper">
+            <h1 class="word">
+
+            </h1>
+            <h3 class="phonetic"></h3>
+
+            <img class="play-audio" src="../images/audio.png" height="20" alt="dictioaudio" />
+
+          </div>
+      
+          <dl class="meanings"></dl>
+        </div>
+        <div id="wikipedia" class="tab-content">
+          <h1 class="wiki-title"></h1>
+          <p class="wiki-content"></p>
+        </div>
+      </div>
+    </div>
+    <div class="container" style="display:none;"> <!-- Hide initially -->
+      <div class="newtons-cradle">
+          <div class="newtons-cradle__dot"></div>
+          <div class="newtons-cradle__dot"></div>
+          <div class="newtons-cradle__dot"></div>
+          <div class="newtons-cradle__dot"></div>
+      </div>
+  </div>
   </body>
 </html>
