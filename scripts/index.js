@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       word.textContent = result;
       console.log(selectedWordData)
 
-      if (phonetic?.textContent)
+      if (selectedWordData[0]?.phonetic)
         phonetic.textContent = selectedWordData[0].phonetic;
       selectedWordData[0].meanings.forEach((meaning) => {
         const title = document.createElement("dt");
@@ -66,10 +66,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         synonymsTitle.textContent = "Synonyms";
         const synonymsData = document.createElement("dd");
         synonymsData.classList.add("synonyms-data");
-        console.log(synonymsData);
         const synonymsList = document.createElement("p");
-        if (selectedWordData[0].meanings[0].synonyms?.length > 0) {
-          synonymsList.textContent = selectedWordData[0].meanings[0].synonyms.join(", ");
+        let synonyms = []
+        selectedWordData[0].meanings.forEach((item) => {
+          synonyms = [...synonyms, ...item.synonyms];
+        })
+        if (synonyms.length > 0) {
+          synonymsList.textContent = synonyms.join(", ");
 
         } else {
           synonymsList.textContent = "No synonyms found"
@@ -85,8 +88,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         const antonymsData = document.createElement("dd");
         antonymsData.classList.add("antonyms-data");
         const antonymsList = document.createElement("p");
-        if (selectedWordData[0].meanings[0].antonyms?.length > 0) {
-          antonymsList.textContent = selectedWordData[0].meanings[0].antonyms.join(", ");
+
+        let antonyms = []
+        selectedWordData[0].meanings.forEach((item) => {
+          antonyms = [...antonyms, ...item.antonyms];
+        })
+
+        if (antonyms.length > 0) {
+          antonymsList.textContent = antonyms.join(", ");
 
         } else {
           antonymsList.textContent = "No antonyms found"
@@ -100,8 +109,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       message.textContent = "Could not find meaning for this word 😓";
     }
 
-    if (selectedWordData[0]?.phonetics[0]?.audio) {
-      audio.src = selectedWordData[0].phonetics[0].audio;
+    let selectedWordAudio = ""
+    selectedWordData[0]?.phonetics.forEach((item) => {
+      if (item?.audio) return selectedWordAudio = item.audio
+    })
+    if (selectedWordAudio) {
+      audio.src = selectedWordAudio
       pronunciationBtn.style.display = "block";
     } else {
       pronunciationBtn.style.display = "none";
