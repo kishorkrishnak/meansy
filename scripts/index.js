@@ -5,8 +5,10 @@ const message = document.querySelector(".message");
 const meanings = document.querySelector(".meanings");
 const wikiTitle = document.querySelector(".wiki-title");
 const wikiContent = document.querySelector(".wiki-content");
+const synonymsAntonyms = document.querySelector(".synonyms-antonyms");
+
 const pronunciationBtn = document.querySelector(".play-audio");
-const loadingAnimation = document.querySelector(".container"); // Add this line
+const loadingAnimation = document.querySelector(".container");
 
 const audio = new Audio();
 
@@ -33,6 +35,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (selectedWordData && selectedWordData.length > 0 && selectedWordData?.[0].meanings && selectedWordData?.[0].meanings.length > 0) {
       word.textContent = result;
+      console.log(selectedWordData)
 
       if (phonetic?.textContent)
         phonetic.textContent = selectedWordData[0].phonetic;
@@ -54,6 +57,44 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (example.textContent) wrapper.append(example);
         meanings.appendChild(title);
         meanings.appendChild(wrapper);
+
+
+        synonymsAntonyms.innerHTML = '';
+
+        const synonymsTitle = document.createElement("dt");
+        synonymsTitle.classList.add("synonyms-title");
+        synonymsTitle.textContent = "Synonyms";
+        const synonymsData = document.createElement("dd");
+        synonymsData.classList.add("synonyms-data");
+        console.log(synonymsData);
+        const synonymsList = document.createElement("p");
+        if (selectedWordData[0].meanings[0].synonyms?.length > 0) {
+          synonymsList.textContent = selectedWordData[0].meanings[0].synonyms.join(", ");
+
+        } else {
+          synonymsList.textContent = "No synonyms found"
+
+        }
+        synonymsData.appendChild(synonymsList);
+        synonymsAntonyms.appendChild(synonymsTitle);
+        synonymsAntonyms.appendChild(synonymsData);
+
+        const antonymsTitle = document.createElement("dt");
+        antonymsTitle.classList.add("antonyms-title");
+        antonymsTitle.textContent = "Antonyms";
+        const antonymsData = document.createElement("dd");
+        antonymsData.classList.add("antonyms-data");
+        const antonymsList = document.createElement("p");
+        if (selectedWordData[0].meanings[0].antonyms?.length > 0) {
+          antonymsList.textContent = selectedWordData[0].meanings[0].antonyms.join(", ");
+
+        } else {
+          antonymsList.textContent = "No antonyms found"
+
+        }
+        antonymsData.appendChild(antonymsList);
+        synonymsAntonyms.appendChild(antonymsTitle);
+        synonymsAntonyms.appendChild(antonymsData);
       });
     } else {
       message.textContent = "Could not find meaning for this word 😓";
@@ -86,7 +127,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const navItems = document.querySelectorAll(".nav-item");
   navItems.forEach(item => {
     item.addEventListener("click", () => {
-        navItems.forEach(nav => nav.classList.remove("active"));
+      navItems.forEach(nav => nav.classList.remove("active"));
       item.classList.add("active");
       openTab(item.getAttribute("data-tab"));
     });

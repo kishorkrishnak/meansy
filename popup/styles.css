@@ -53,17 +53,20 @@ body {
 }
 .meaning,
 .message,
-.wiki-content {
+.wiki-content,
+.etymology-content {
   font-weight: 500;
   font-size: 1.15rem;
 }
 
-.meaning-title {
+.meaning-title,
+.synonyms-title,
+.antonyms-title {
   font-size: 1.3rem;
   font-style: italic;
 }
 
-.meanings {
+.meanings,.synonyms-antonyms {
   font-size: 1.1rem;
   font-weight: 600;
 }

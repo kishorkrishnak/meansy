@@ -1,57 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Meansy - Find Meaning Easily</title>
     <script defer src="../scripts/index.js"></script>
     <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
+</head>
+<body>
     <div class="meansy-wrapper">
-      <div class="navbar">
-        <div class="nav-item active" data-tab="meaning">
-          <img src="../images/dict.png" height="20" alt="dictionary" />
-        </div>
-        <div class="nav-item" data-tab="wikipedia">
-          <img src="../images/wiki.png" height="20" alt="wikipedia" />
-        </div>
-      </div>
+        <div class="navbar">
+            <div class="nav-item active" data-tab="meaning">
+                <img src="../images/dict.png" height="20" alt="dictionary" />
+            </div>
+            <div class="nav-item" data-tab="synonyms-antonyms">
+              <img src="../images/synan.png" height="16" alt="etymology" />
 
-      <div class="meansy-body">
-        <div id="meaning" class="tab-content">
-          <p class="message"></p>
-
-          <div class="word-wrapper">
-            <h1 class="word"></h1>
-            <h3 class="phonetic"></h3>
-
-            <img
-              style="display: none"
-              class="play-audio"
-              src="../images/audio.png"
-              height="20"
-              alt="dictioaudio"
-            />
-          </div>
-
-          <dl class="meanings"></dl>
+            </div>
+            <div class="nav-item" data-tab="wikipedia">
+                <img src="../images/wiki.png" height="20" alt="wikipedia" />
+            </div>
+           
+         
         </div>
-        <div id="wikipedia" class="tab-content">
-          <h1 class="wiki-title"></h1>
-          <p class="wiki-content"></p>
+
+        <div class="meansy-body">
+            <div id="meaning" class="tab-content">
+                <p class="message"></p>
+                <div class="word-wrapper">
+                    <h1 class="word"></h1>
+                    <h3 class="phonetic"></h3>
+                    <img style="display: none" class="play-audio" src="../images/audio.png" height="20" alt="dictioaudio" />
+                </div>
+                <dl class="meanings"></dl>
+            </div>
+            <div id="wikipedia" class="tab-content">
+                <h1 class="wiki-title"></h1>
+                <p class="wiki-content"></p>
+            </div>
+        
+            <div id="synonyms-antonyms" class="tab-content">
+                <dl class="synonyms-antonyms"></dl>
+            </div>
         </div>
-      </div>
     </div>
     <div class="container" style="display: none">
-      <img src="../images/logo.png" height="100" alt="logo" />
-      <h1 class="loading-title">Meansy</h1>
-      <div class="newtons-cradle">
-        <div class="newtons-cradle__dot"></div>
-        <div class="newtons-cradle__dot"></div>
-        <div class="newtons-cradle__dot"></div>
-        <div class="newtons-cradle__dot"></div>
-      </div>
+        <img src="../images/logo.png" height="100" alt="logo" />
+        <h1 class="loading-title">Meansy</h1>
+        <div class="newtons-cradle">
+            <div class="newtons-cradle__dot"></div>
+            <div class="newtons-cradle__dot"></div>
+            <div class="newtons-cradle__dot"></div>
+            <div class="newtons-cradle__dot"></div>
+        </div>
     </div>
-  </body>
+</body>
 </html>
