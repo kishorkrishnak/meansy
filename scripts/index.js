@@ -1,6 +1,7 @@
 const word = document.querySelector(".word");
 const phonetic = document.querySelector(".phonetic");
 const message = document.querySelector(".message");
+
 const meanings = document.querySelector(".meanings");
 const wikiTitle = document.querySelector(".wiki-title");
 const wikiContent = document.querySelector(".wiki-content");
@@ -25,19 +26,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     return;
   }
   if (result) {
-    word.textContent = result;
-    showLoadingAnimation(); // Show loading animation
+    showLoadingAnimation();
     const selectedWordData = await fetchWordMeaning(result);
     const wikipediaData = await fetchWordWikipedia(result);
-    hideLoadingAnimation(); // Hide loading animation
-    if (selectedWordData[0].phonetics[0].audio) {
-      audio.src = selectedWordData[0].phonetics[0].audio;
-      pronunciationBtn.style.display = "block";
-    } else {
-      pronunciationBtn.style.display = "none";
-    }
+    hideLoadingAnimation();
+
     if (selectedWordData && selectedWordData.length > 0 && selectedWordData?.[0].meanings && selectedWordData?.[0].meanings.length > 0) {
-      phonetic.textContent = selectedWordData[0].phonetic;
+      word.textContent = result;
+
+      if (phonetic?.textContent)
+        phonetic.textContent = selectedWordData[0].phonetic;
       selectedWordData[0].meanings.forEach((meaning) => {
         const title = document.createElement("dt");
         title.classList.add("meaning-title");
@@ -58,13 +56,27 @@ document.addEventListener("DOMContentLoaded", async () => {
         meanings.appendChild(wrapper);
       });
     } else {
-      message.textContent = "Could not find meaning for this word";
+      message.textContent = "Could not find meaning for this word 😓";
     }
+
+    if (selectedWordData[0]?.phonetics[0]?.audio) {
+      audio.src = selectedWordData[0].phonetics[0].audio;
+      pronunciationBtn.style.display = "block";
+    } else {
+      pronunciationBtn.style.display = "none";
+    }
+
+
     if (wikipediaData && wikipediaData.query.pages) {
       const pageId = Object.keys(wikipediaData.query.pages)[0];
       const page = wikipediaData.query.pages[pageId];
       wikiTitle.textContent = page.title;
       wikiContent.innerHTML = page.extract;
+
+      const readMoreBtn = document.createElement("div");
+      readMoreBtn.classList.add("read-more-btn");
+      readMoreBtn.innerHTML = `<a href="https://en.wikipedia.org/wiki/${encodeURIComponent(page.title)}" target="_blank">Read more</a>`;
+      wikiContent.appendChild(readMoreBtn);
     } else {
       wikiContent.textContent = "No Wikipedia article found for this word";
     }
@@ -74,7 +86,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const navItems = document.querySelectorAll(".nav-item");
   navItems.forEach(item => {
     item.addEventListener("click", () => {
-      navItems.forEach(nav => nav.classList.remove("active"));
+        navItems.forEach(nav => nav.classList.remove("active"));
       item.classList.add("active");
       openTab(item.getAttribute("data-tab"));
     });

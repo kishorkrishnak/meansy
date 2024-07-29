@@ -6,7 +6,7 @@ body {
   margin: 0;
   box-sizing: border-box;
   width: fit-content;
-  min-height: 250px;
+  min-height: 400px;
   background-color: #fff8e1;
 }
 
@@ -48,7 +48,7 @@ body {
 .word {
   margin: 0 !important;
 }
-.play-audio{
+.play-audio {
   cursor: pointer;
 }
 .meaning,
@@ -68,21 +68,27 @@ body {
   font-weight: 600;
 }
 
-.meaning-example{
+.meaning-example {
   color: gray;
   font-size: 0.95rem;
 }
 
-
-
 .container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  padding-top: 2rem;
   align-items: center;
 }
 
+.loading-title {
+  z-index: 1000;
+  font-size: 2rem;
+}
+
 .newtons-cradle {
-  --uib-size: 200px; 
+  margin-top: -2.5rem;
+  --uib-size: 200px;
   --uib-speed: 1.2s;
   --uib-color: #474554;
   position: relative;
@@ -103,7 +109,7 @@ body {
 }
 
 .newtons-cradle__dot::after {
-  content: '';
+  content: "";
   display: block;
   width: 100%;
   height: 25%;
@@ -121,36 +127,52 @@ body {
 
 @keyframes swing {
   0% {
-      transform: rotate(0deg);
-      animation-timing-function: ease-out;
+    transform: rotate(0deg);
+    animation-timing-function: ease-out;
   }
   25% {
-      transform: rotate(70deg);
-      animation-timing-function: ease-in;
+    transform: rotate(70deg);
+    animation-timing-function: ease-in;
   }
   50% {
-      transform: rotate(0deg);
-      animation-timing-function: linear;
+    transform: rotate(0deg);
+    animation-timing-function: linear;
   }
 }
 
 @keyframes swing2 {
   0% {
-      transform: rotate(0deg);
-      animation-timing-function: linear;
+    transform: rotate(0deg);
+    animation-timing-function: linear;
   }
   50% {
-      transform: rotate(0deg);
-      animation-timing-function: ease-out;
+    transform: rotate(0deg);
+    animation-timing-function: ease-out;
   }
   75% {
-      transform: rotate(-70deg);
-      animation-timing-function: ease-in;
+    transform: rotate(-70deg);
+    animation-timing-function: ease-in;
   }
 }
 
 @media screen and (max-width: 500px) {
   .newtons-cradle {
-      --uib-size: 120px;
+    --uib-size: 120px;
   }
+}
+
+.read-more-btn {
+  display: block;
+  margin-top: 10px;
+  text-align: right;
+}
+
+.read-more-btn a {
+  color: #007bff;
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+.read-more-btn a:hover {
+  text-decoration: underline;
 }
